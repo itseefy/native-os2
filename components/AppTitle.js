@@ -3,7 +3,7 @@ import { Text, StyleSheet } from 'react-native';
 
 export default function LogoTitle() {
   return (
-    <Text style={styles.titleText}>Roll 1d6</Text>
+    <Text style={styles.titleText}>Dice Roller</Text>
   );
 }
 

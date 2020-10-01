@@ -7,18 +7,22 @@ import RollButton from "./RollButton";
 
 export default function roll({ navigation }) {
 
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const spinAnim = useRef(new Animated.Value(0)).current;
     const isFocused = useIsFocused();
 
-    useEffect(() => {
-        Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 1500,
-            useNativeDriver: true,
+    const startAnim = () => {
+        spinAnim.setValue(0);
+        Animated.timing(spinAnim, {
+          toValue: 1,
+          duration: 1000,
+          useNativeDriver: true,
         }).start();
-
-        return () => fadeAnim.setValue(0);
-    }, [fadeAnim, isFocused]);
+      };
+    
+      useEffect(() => {
+        startAnim();
+        return () => spinAnim.setValue(0);
+      }, [spinAnim, isFocused]);
 
     //dice roll
     const diceImages = [
@@ -90,12 +94,11 @@ export default function roll({ navigation }) {
             </View>
             <Animated.View
                 style={{
-                    opacity: fadeAnim,
                     transform: [
                         {
-                            translateY: fadeAnim.interpolate({
+                            rotate: spinAnim.interpolate({
                                 inputRange: [0, 1],
-                                outputRange: [50, 0],
+                                outputRange: ["0deg", "360deg"],
                             }),
                         },
                     ],

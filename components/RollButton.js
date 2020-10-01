@@ -15,7 +15,7 @@ export default function rollButton(props) {
 const styles = StyleSheet.create({
   counterBtn: {
     marginTop: 10,
-    backgroundColor: 'green',
+    backgroundColor: '#c745ff',
     padding: 20,
   },
   counterBtnText: {
